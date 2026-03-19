@@ -1,3 +1,4 @@
+import 'package:actividad1/main.dart';
 import 'package:flutter/material.dart';
 import 'widgets/InputWidget.dart';
 
@@ -93,7 +94,11 @@ class _RegistroState extends State<Registro> {
               FractionallySizedBox(
                 widthFactor: 0.9,
                 child: ElevatedButton(onPressed: (){
-                  
+                  Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainApp()),
+                  (route) => false,
+                );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.orange,
