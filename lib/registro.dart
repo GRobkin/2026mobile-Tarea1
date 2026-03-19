@@ -17,6 +17,58 @@ class _RegistroState extends State<Registro> {
   final TextEditingController c4 = TextEditingController();
   final TextEditingController c5 = TextEditingController();
 
+
+  void mostrarAlerta(String titulo, String mensaje) {
+  showDialog(
+    context: context,
+    builder: (_) => AlertDialog(
+      title: Text(titulo),
+      content: Text(
+        mensaje,
+        textAlign: TextAlign.left,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text("OK"),
+        ),
+      ],
+    ),
+  );
+}
+
+
+void guardarDatos() {
+  String nombre = c1.text.trim();
+  String edad = c2.text.trim();
+  String curso = c3.text.trim();
+  String ciudad = c4.text.trim();
+  String pais = c5.text.trim();
+
+  if (nombre.isEmpty ||
+      edad.isEmpty ||
+      curso.isEmpty ||
+      ciudad.isEmpty ||
+      pais.isEmpty) {
+    mostrarAlerta(
+      "Error",
+      "Todos los campos deben estar completos",
+    );
+    return;
+  }
+
+  mostrarAlerta(
+    "Datos registrados",
+    "Nombre: $nombre\n"
+    "Edad: $edad\n"
+    "Curso: $curso\n"
+    "Ciudad: $ciudad\n"
+    "País: $pais",
+  );
+}
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -79,7 +131,7 @@ class _RegistroState extends State<Registro> {
               FractionallySizedBox(
                 widthFactor: 0.9,
                 child: ElevatedButton(onPressed: (){
-                  
+                  guardarDatos();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green,
